@@ -18,7 +18,7 @@ border-bottom: 3px double lightgray;
 }
 
 #logo {
-    background-image: url('https://curlyjoe71.github.io/myInterviewDemo//assets/AALL-logo.png');
+    background-image: url(../assets/aallleaves.jpg);
     height: 80%;
     margin-left: 100px;
     background-size: contain;
@@ -28,7 +28,7 @@ border-bottom: 3px double lightgray;
 
 #form-container {
     display:flex;
-    background-image: url('https://curlyjoe71.github.io/myInterviewDemo//assets/Hands-1.png');
+    background-image: url(../assets/Hands-1.png);
     height: 75vh;
     width: 80vw;
     background-size: cover;
