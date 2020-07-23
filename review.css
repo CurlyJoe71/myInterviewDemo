@@ -1,0 +1,124 @@
+body {
+    display: flex;
+    /* align-items: center; */
+    height:90vh;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    font-family: 'Montserrat Alternates', sans-serif;
+    height: 100%
+}
+
+html {
+    height: 100%
+}
+
+#header {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,d11717+64,f6f6f6+100&1+0,0.24+100 */
+background: -moz-linear-gradient(-45deg,  rgba(255,255,255,1) 0%, #ac3a79 64%, rgba(246,246,246,0.24) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,#ac3a79 64%,rgba(246,246,246,0.24) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  rgba(255,255,255,1) 0%,#ac3a79 64%,rgba(246,246,246,0.24) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#3df6f6f6',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+width: 100vw;
+height: 90px;
+border-bottom: 3px double lightgray;
+}
+
+#logo {
+    background-image: url(/assets/AALL-logo.png);
+    height: 80%;
+    margin-left: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top:10px;
+}
+
+#outer-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#review-container {
+    width: 50%;
+}
+
+#notes-container {
+    width: 50%;
+}
+
+.clearfix {
+    clear:both;
+  }
+  
+  .text-center {text-align:center;}
+  
+  a {
+    color: tomato;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #2196f3;
+  }
+  
+  pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #F5F5F5;
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  }
+
+  /* Rating Star Widgets Style */
+.rating-stars ul {
+    list-style-type:none;
+    padding:0;
+    
+    -moz-user-select:none;
+    -webkit-user-select:none;
+  }
+  .rating-stars ul > li.star {
+    display:inline-block;
+    
+  }
+  
+  /* Idle State of the stars */
+  .rating-stars ul > li.star > i.fa {
+    font-size:2.5em; /* Change the size of the stars */
+    color:#ccc; /* Color on idle state */
+  }
+  
+  /* Hover state of the stars */
+  .rating-stars ul > li.star.hover > i.fa {
+    color:#FFCC36;
+  }
+  
+  /* Selected state of the stars */
+  .rating-stars ul > li.star.selected > i.fa {
+    color:#FF912C;
+  }
+  
+
+.card {
+    /* height: 89%; */
+    /* background-color: whitesmoke; */
+    border-radius: 5px;
+    /* width: 50%; */
+    opacity: 0;
+    margin: auto;
+    transform: translateX(100%);
+    animation: slide-in 1s forwards 2s;
+    text-align: center;
+}
+
+@keyframes slide-in {
+    100% { 
+        transform: translateX(0%);
+        opacity: 0.9 
+    }
+}
