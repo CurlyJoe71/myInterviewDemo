@@ -1,7 +1,7 @@
-const firstName = "Jaime";
-const lastName = "Gonzalez";
+const firstName = "Brooklyn";
+const lastName = "Reyes";
 const username = `${firstName} ${lastName}`;
-const email = "curlyjoe71@gmail.com";
+const email = "brooklyn.reyes@aall.net";
 
 const callback = videoID => {
     console.log(`${username}, ${email}, ${videoID}`)
