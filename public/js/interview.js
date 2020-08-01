@@ -1,75 +1,49 @@
-const firstName = "Elizabeth";
-const lastName = "Reyes";
-const username = `${firstName} ${lastName}`;
-const email = "brooklyn.reyes@aall.net";
 
+//parameters for httprequest
+const url = "/update";
+const method = "POST";
+const reqAsync = true;
+
+//parsing the user's UID
+const pathName = window.location.pathname;
+console.log('pathName:', pathName);
+const splitPath = pathName.split('/');
+console.log('splitPath', splitPath);
+const uid = splitPath[2]
+
+// const testVideoID = 'd9f8536e-89db-46de-83fc-648dea3ce5e5';
+
+let request = new XMLHttpRequest();
+
+//Other settings for upcoming httprequest
+request.onload = () => {
+  let status = request.status;
+  let dataRes = request.responseText;
+  console.log('onload: ', dataRes);
+}
+
+request.open(method, url, reqAsync);
+
+request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+//****TESTING**** */
+const testingAPI = () => {
+  console.log('starting testingAPI function');
+  setTimeout(() => {
+    console.log('time ran out');
+    const data = `candUID=${uid}&testVideoID=${testVideoID}`;
+    request.send(data);
+  }, 3000);
+}
+
+//Will be called after user has completed video.
 const callback = videoID => {
-    console.log(`${username}, ${email}, ${videoID}`)
+    console.log(`${videoID}`);
+    alert(`About to make request.send with with this videoID: ${videoID}.`)
+    const data = `candUID=${uid}&testVideoID=${videoID}`;
+    request.send(data);
     window.setTimeout(myInterviewRecorder.reset, 1000)
 }
 
-// const updateText = () => {
-//     console.log("updating Text")
-//     const welcomeString = "Welcome, " + firstName + "!";
-//     console.log(welcomeString)
-//     let elem = $(".welcome");
-//     console.log("elem = ", elem.html())
-//     elem.text(welcomeString)
-//     //.replace("", welcomeString);
-//     console.log("elem = ", elem.html())
-// }
+// $(document).ready(testingAPI);
 
-// $(document).ready(updateText);
-
-
-$(document).ready(function(){
-  
-    /* 1. Visualizing things on Hover - See next part for action on click */
-    $('#stars li').on('mouseover', function(){
-      var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
-     
-      // Now highlight all the stars that's not after the current hovered star
-      $(this).parent().children('li.star').each(function(e){
-        if (e < onStar) {
-          $(this).addClass('hover');
-        }
-        else {
-          $(this).removeClass('hover');
-        }
-      });
-      
-    }).on('mouseout', function(){
-      $(this).parent().children('li.star').each(function(e){
-        $(this).removeClass('hover');
-      });
-    });
-    
-    
-    /* 2. Action to perform on click */
-    $('#stars li').on('click', function(){
-      var onStar = parseInt($(this).data('value'), 10); // The star currently selected
-      var stars = $(this).parent().children('li.star');
-      
-      for (i = 0; i < stars.length; i++) {
-        $(stars[i]).removeClass('selected');
-      }
-      
-      for (i = 0; i < onStar; i++) {
-        $(stars[i]).addClass('selected');
-      }
-      
-      // JUST RESPONSE (Not needed)
-      var ratingValue = parseInt($('#stars li.selected').last().data('value'), 10);
-      var msg = "";
-      if (ratingValue > 1) {
-          msg = "Thanks! You rated this " + ratingValue + " stars.";
-      }
-      else {
-          msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
-      }
-      responseMessage(msg);
-      
-    });
-    
-    
-  });
