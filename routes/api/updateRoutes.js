@@ -16,9 +16,11 @@ const config = {
 };
 
 router.post('/prescreen/:id', (req, res) => {
-    console.log("post preScreen update made", req.params.id);
+    // console.log("post preScreen update made", req.params.id);
     const data = req.body;
-    console.log('check friendliness:', data["Friendliness"]);
+    console.log('check notes:', data["PrescreenNotes"]);
+    data["PrescreenNotes"] = data["PrescreenNotes"].replace(/'/g, "''");
+    console.log('after replace,', data["PrescreenNotes"]);
     const id = req.params.id;
     // sql.connect(config).then(conn => {
     //     conn.query(
@@ -29,7 +31,8 @@ router.post('/prescreen/:id', (req, res) => {
             `Effectiveness = ${data["Effectiveness"]}, ` +
             `Clarity = ${data["Clarity"]}, ` +
             `Spanish = ${data["Spanish"]}, ` +
-            `English = ${data["English"]} ` +
+            `English = ${data["English"]}, ` +
+            `PrescreenNotes = '${data["PrescreenNotes"]}' ` +
             `where uid = '${data["UID"]}'`
         )
         .then(recordset => {
