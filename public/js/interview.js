@@ -1,6 +1,6 @@
 
 //parameters for httprequest
-const url = "/update";
+const url = "/video/update";
 const method = "POST";
 const reqAsync = true;
 
