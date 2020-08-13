@@ -1,41 +1,46 @@
+    <div id="header">
+        <div id="logo"></div>
+    </div>
     <div id="form-container" class="container-fluid">
         {{!--  --}}
-        <div class="row">
-            <div class="col">
-                <div id="header">
-                    <div id="logo"></div>
-                </div>
-            </div>
-        </div>
+        {{!-- <div class="row"> --}}
+            {{!-- <div class="col"> --}}
+            {{!-- </div> --}}
+        {{!-- </div> --}}
         <div class="row">
             <div class="col">
                 <div class="card">
                     <div class="welcome card-title">Welcome, {{firstName}}</div>
                     <div class="card-body">
-                        <div class="videoWrapper">
-                            <iframe  src="https://www.youtube.com/embed/TPkg4DNxJPs" width="560" height="346" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="row">
+                            <div class="col">
+                                {{!-- <div class="videoWrapper"> --}}
+                                    <iframe src="https://www.youtube.com/embed/TPkg4DNxJPs" width="560" height="346" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                {{!-- </div> --}}
+                            </div>
                         </div>
-                        <div class="welcome-body">
-                            <p>Thank you for applying for our <b>Bilingual - Customer Service Representative</b> position.
-                            <br/>
-                            We are looking forward to getting to know you.
-                            <br/>
-                            Click on the button to begin.
-                            <br/>
-                            You'll watch a brief introductory video to help you get started.
-                            <br/>
-                            </p>
-                            <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/wex_lvJx0Jw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                        <div class="row">
+                            <div class="col">
+                                <div class="welcome-body">
+                                    <p>Thank you for applying for our <b>Bilingual - Customer Service Representative</b> position.
+                                    <br/>
+                                    We are looking forward to getting to know you.
+                                    <br/>
+                                    Click on the button to begin.
+                                    <br/>
+                                    You'll watch a brief introductory video to help you get started.
+                                    <br/>
+                                    </p>
+                                    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/wex_lvJx0Jw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                                </div>
+                                <form>
+                                    <div id="myinterview" style="opacity:0;"></div>
+                                </form>
+                            </div>
                         </div>
-                        <form>
-                            <div id="myinterview" style="opacity:0;"></div>
-                        </form>
-
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 
