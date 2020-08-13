@@ -1,18 +1,18 @@
 body {
-    display: flex;
+    /* display: flex; */
     /* align-items: center; */
-    height:90vh;
-    flex-direction: column;
+    /* height:100%; */
+    /* flex-direction: column; */
     font-family: 'Montserrat Alternates', sans-serif;
 }
 
 #header {
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,d11717+64,f6f6f6+100&1+0,0.24+100 */
-background: -moz-linear-gradient(-45deg,  rgba(255,255,255,1) 0%, #232a8a 64%, rgba(246,246,246,0.24) 100%); /* FF3.6-15 */
+    background: -moz-linear-gradient(-45deg,  rgba(255,255,255,1) 0%, #232a8a 64%, rgba(246,246,246,0.24) 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,#232a8a 64%,rgba(246,246,246,0.24) 100%); /* Chrome10-25,Safari5.1-6 */
 background: linear-gradient(135deg,  rgba(255,255,255,1) 0%,#232a8a 64%,rgba(246,246,246,0.24) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#3df6f6f6',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-width: 100vw;
+/* width: 100vw; */
 height: 60px;
 border-bottom: 3px double lightgray;
 }
@@ -27,20 +27,34 @@ border-bottom: 3px double lightgray;
 }
 
 #form-container {
-    display:flex;
     background-image: url(/images/Hands-1.png);
-    height: 90vh;
-    width: 95vw;
     background-size: cover;
     background-repeat: no-repeat;
-    margin: auto;
+   
+    /* height: 90vh;
+    width: 95vw; */
+    /* margin: auto;
     justify-content: center;
     box-shadow: 0px 0px 20px 0px rgba(170,170,170,0.3);
-    border-radius: 5px;
+    border-radius: 5px; */
+}
+
+.videoWrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+
+.videoWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .card {
-    height: 97%;
+    /* height: 97%; */
     background-color: whitesmoke;
     border-radius: 5px;
     /* width: 90%; */

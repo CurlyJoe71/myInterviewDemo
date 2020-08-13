@@ -1,13 +1,20 @@
-    <div id="header">
-        <div id="logo"></div>
-    </div>
     <div id="form-container" class="container-fluid">
+        {{!--  --}}
+        <div class="row">
+            <div class="col">
+                <div id="header">
+                    <div id="logo"></div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col">
                 <div class="card">
                     <div class="welcome card-title">Welcome, {{firstName}}</div>
                     <div class="card-body">
-                        <iframe  src="https://www.youtube.com/embed/TPkg4DNxJPs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="videoWrapper">
+                            <iframe  src="https://www.youtube.com/embed/TPkg4DNxJPs" width="560" height="346" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
                         <div class="welcome-body">
                             <p>Thank you for applying for our <b>Bilingual - Customer Service Representative</b> position.
                             <br/>
@@ -21,7 +28,7 @@
                             <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/wex_lvJx0Jw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
                         </div>
                         <form>
-                        <div id="myinterview" style="opacity:0;"></div>
+                            <div id="myinterview" style="opacity:0;"></div>
                         </form>
 
                     </div>
@@ -31,6 +38,5 @@
 
         </div>
     </div>
-    <!-- https://share.myinterview.com/video/Bdu49C6osiDAVN7yvqJ3ZkMvsfy6vSNVVzxu -->
 
 
