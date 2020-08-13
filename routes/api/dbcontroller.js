@@ -47,7 +47,7 @@ exports.getAll = (req, res) => {
         conn
         .query(
             "Select h.id, " +
-            "FullName = d.FirstName + ' ' + d.LastName, " +
+            "ratingAvg = (h.Friendliness + h.Clarity + h.Effectiveness + h.English + h.Spanish) / 5, " +
             "* from paychex.dbo.Hiring h " +
             "left join paychex.dbo.hiringdetails d on d.id = h.uid " +
             "order by h.ID DESC"
@@ -95,6 +95,29 @@ exports.getPage = (req, res) => {
             sql.close();
         })
 
+    })
+}
+
+exports.geManagers = (req, res) => {
+    sql.connect(config)
+    .then(conn => {
+        conn
+        .query(
+            "select [Manger], [EMAIL] from [Lobby_queue].[dbo].[office_managers] " +
+            "where EndDate is null " +
+            "group by Manager, EMAIL"
+        )
+        .then(recordset => {
+            dataSet[0] = recordset.recordset;
+            res.send(dataset);
+        })
+        .then(() => {
+            sql.close();
+        })
+        .catch(err => {
+            console.log('err:', err);
+            sql.close();
+        })
     })
 }
 

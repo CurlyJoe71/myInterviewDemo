@@ -8,12 +8,12 @@ body {
 
 #header {
     /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffffff+0,d11717+64,f6f6f6+100&1+0,0.24+100 */
-background: -moz-linear-gradient(-45deg,  rgba(255,255,255,1) 0%, #ac3a79 64%, rgba(246,246,246,0.24) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,#ac3a79 64%,rgba(246,246,246,0.24) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(135deg,  rgba(255,255,255,1) 0%,#ac3a79 64%,rgba(246,246,246,0.24) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+background: -moz-linear-gradient(-45deg,  rgba(255,255,255,1) 0%, #232a8a 64%, rgba(246,246,246,0.24) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,#232a8a 64%,rgba(246,246,246,0.24) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  rgba(255,255,255,1) 0%,#232a8a 64%,rgba(246,246,246,0.24) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#3df6f6f6',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 width: 100vw;
-height: 90px;
+height: 60px;
 border-bottom: 3px double lightgray;
 }
 
@@ -23,14 +23,14 @@ border-bottom: 3px double lightgray;
     margin-left: 100px;
     background-size: contain;
     background-repeat: no-repeat;
-    margin-top:10px;
+    margin-top:5px;
 }
 
 #form-container {
     display:flex;
     background-image: url(/images/Hands-1.png);
-    height: 75vh;
-    width: 80vw;
+    height: 90vh;
+    width: 95vw;
     background-size: cover;
     background-repeat: no-repeat;
     margin: auto;
@@ -40,22 +40,24 @@ border-bottom: 3px double lightgray;
 }
 
 .card {
-    height: 89%;
+    height: 97%;
     background-color: whitesmoke;
     border-radius: 5px;
-    width: 50%;
+    /* width: 90%; */
     opacity: 0;
-    margin: auto;
+    /* margin-top: 90px; */
     transform: translateX(-100%);
     animation: slide-in 1s forwards 2s;
     text-align: center;
 }
 
 .welcome {
-    margin-top: 20px;
+    /* display: flex; */
+    /* margin-top: 20px; */
     font-size: 40px;
-    margin-bottom: 13px;
+    /* margin-bottom: 13px; */
     font-family: 'Bangers', cursive;
+    text-align: center;
 }
 
 .welcome-body p {
@@ -73,6 +75,6 @@ border-bottom: 3px double lightgray;
 @keyframes slide-in {
     100% { 
         transform: translateX(0%);
-        opacity: 0.9 
+        opacity: 1 
     }
 }

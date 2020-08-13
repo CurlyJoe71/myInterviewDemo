@@ -50,6 +50,52 @@ router.post('/prescreen/:id', (req, res) => {
             sql.close();
         })
     })
+});
+
+router.post('/managerNotes/:id', (req, res) => {
+    console.log('req.body: ', req.body);
+    req.body.notes = req.body.notes.replace(/'/g, "''");
+    sql.connect(config)
+    .then(conn => {
+        conn.query(
+            `update paychex.dbo.hiring ` +
+            `set ManagerNotes = '${req.body.notes}' ` +
+            `where uid = '${req.body.uid}'`
+        )
+        .then(recordset => {
+            res.send(recordset.recorset);
+        })
+        .then(() => {
+            sql.close();
+        })
+        .catch(err => {
+            console.log('err:', err);
+            sql.close()
+        })
+    })
+})
+
+router.post('/GMNotes/:id', (req, res) => {
+    console.log('req.body: ', req.body);
+    req.body.notes = req.body.notes.replace(/'/g, "''");
+    sql.connect(config)
+    .then(conn => {
+        conn.query(
+            `update paychex.dbo.hiring ` +
+            `set GMNotes = '${req.body.notes}' ` +
+            `where uid = '${req.body.uid}'`
+        )
+        .then(recordset => {
+            res.send(recordset.recorset);
+        })
+        .then(() => {
+            sql.close();
+        })
+        .catch(err => {
+            console.log('err:', err);
+            sql.close()
+        })
+    })
 })
 
 router.post('/:id', (req, res) => {
