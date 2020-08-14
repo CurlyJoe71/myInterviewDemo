@@ -89,6 +89,14 @@ border-bottom: 3px double lightgray;
     text-decoration: none;
 }
 
+.modal {
+    background-color: whitesmoke; 
+    width: 500px;
+    height: 350px;   
+    margin-left: calc((100% - 500px)/2);
+    
+}
+
 @keyframes slide-in {
     100% { 
         transform: translateX(0%);

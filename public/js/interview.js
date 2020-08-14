@@ -25,14 +25,20 @@ request.open(method, url, reqAsync);
 request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
 //****TESTING**** */
-// const testingAPI = () => {
-//   console.log('starting testingAPI function');
-//   setTimeout(() => {
-//     console.log('time ran out');
-//     const data = `candUID=${uid}&testVideoID=${testVideoID}`;
-//     request.send(data);
-//   }, 3000);
-// }
+testingAPI = () => {
+  console.log('starting testingAPI function');
+  setTimeout(() => {
+    console.log('time ran out');
+    showModal();
+  }, 3000);
+}
+
+$(document).ready(testingAPI());
+
+showModal = () => {
+  console.log('running showModal function');
+  $('#modalID').modal('show');
+}
 
 //Will be called after user has completed video.
 const callback = videoID => {
