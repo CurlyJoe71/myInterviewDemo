@@ -25,15 +25,15 @@ request.open(method, url, reqAsync);
 request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
 //****TESTING**** */
-testingAPI = () => {
-  console.log('starting testingAPI function');
-  setTimeout(() => {
-    console.log('time ran out');
-    showModal();
-  }, 3000);
-}
+// testingAPI = () => {
+//   console.log('starting testingAPI function');
+//   setTimeout(() => {
+//     console.log('time ran out');
+//     showModal();
+//   }, 3000);
+// }
 
-$(document).ready(testingAPI());
+// $(document).ready(testingAPI());
 
 showModal = () => {
   console.log('running showModal function');
@@ -45,6 +45,7 @@ const callback = videoID => {
     console.log(`${videoID}`);
     // alert(`About to make request.send with with this videoID: ${videoID}.`)
     const data = `candUID=${uid}&testVideoID=${videoID}`;
+    showModal():
     request.send(data);
     window.setTimeout(myInterviewRecorder.reset, 1000)
 }
