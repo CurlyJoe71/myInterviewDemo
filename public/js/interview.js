@@ -45,7 +45,7 @@ const callback = videoID => {
     console.log(`${videoID}`);
     // alert(`About to make request.send with with this videoID: ${videoID}.`)
     const data = `candUID=${uid}&testVideoID=${videoID}`;
-    showModal():
+    showModal();
     request.send(data);
     window.setTimeout(myInterviewRecorder.reset, 1000)
 }
