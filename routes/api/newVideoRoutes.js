@@ -19,22 +19,39 @@ router.get('/:uid', (req, res) => {
     id = req.params.uid;
     
     console.log('app.get id:', id);
-    checkUID((bool, sqlRes)=>{
-        // console.log('callback?', bool, sqlRes)
-        let validation = sqlRes.valid;
-        if (validation === 'TRUE') {
-            // res.render(`home`, {
-            //     helpers: {
-            //         firstName: () => {return firstName;},
-            //         lastName: () => {return lastName;}
-            //     }
-            // })
-            res.send('TRUE');
-        }
-        else {
-            res.send("Not looking good...")
-        }
-    });
+    sql.connect(config).then(conn => {
+        conn.query(
+            `select valid = case when exists ` +
+            `(select * from paychex.dbo.hiring where uid = '${id}') ` +
+            `then 'TRUE' else 'FALSE' end`
+        )
+        .then(recordset => {
+            res.send(recordset.recordset);
+        })
+        .then(() => {
+            sql.close();
+        })
+        .catch(err => {
+            console.log('err:', err);
+            sql.close();
+        })
+    })
+    // checkUID((bool, sqlRes)=>{
+    //     // console.log('callback?', bool, sqlRes)
+    //     let validation = sqlRes.valid;
+    //     if (validation === 'TRUE') {
+    //         // res.render(`home`, {
+    //         //     helpers: {
+    //         //         firstName: () => {return firstName;},
+    //         //         lastName: () => {return lastName;}
+    //         //     }
+    //         // })
+    //         res.send('TRUE');
+    //     }
+    //     else {
+    //         res.send("Not looking good...")
+    //     }
+    // });
     // console.log('validation:', validation);
 });
 
