@@ -1,6 +1,7 @@
 const sql = require('mssql/msnodesqlv8');
 const express = require('express');
 const router = express.Router();
+const nodemailer = require('nodemailer');
 const dataSet = [];
 
 // config object for database, using credentials from sqlserver login
@@ -15,6 +16,18 @@ const config = {
     driver: "msnodesqlv8"
 };
 
+const options = {
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+        user: 'hiringapps@aall.net',
+        pass: '*2uAg4Nu'
+    }
+}
+
+let transport = nodemailer.createTransport(options);
+
 router.post('/prescreen/:id', (req, res) => {
     // console.log("post preScreen update made", req.params.id);
     const data = req.body;
@@ -22,8 +35,8 @@ router.post('/prescreen/:id', (req, res) => {
     data["PrescreenNotes"] = data["PrescreenNotes"].replace(/'/g, "''");
     console.log('after replace,', data["PrescreenNotes"]);
     const id = req.params.id;
-    // sql.connect(config).then(conn => {
-    //     conn.query(
+    const reviewLink = 'http://hiring.aall.net:444/video-interview/review/' + data["UID"];
+
     sql.connect(config).then(conn=>{
         conn.query(
             `update paychex.dbo.hiring ` +
@@ -37,12 +50,32 @@ router.post('/prescreen/:id', (req, res) => {
         )
         .then(recordset => {
             console.log("update prescreen recordset", recordset);
-            // dataSet[0] = recordset.recordset;
-            // res.send(dataSet);
             res.send("Success")
         })
         .then(() => {
             sql.close();
+        })
+        .then(() => {
+            transport.sendMail({
+                from: 'AALL Hiring Team',
+                to: ['jaime.gonzalez@aall.net'],
+                    // perla.navarro@aall.net, brooklyn.reyes@aall.net]',
+                subject: 'Prescreen Completed',
+                html: `<!DOCTYPE html><html><body><table><thead><tr style="text-align:center"><img src="https://aall.net/wp-content/uploads/aallleaves.jpg" width="150px" alt="AALL Hiring Logo" border="0"></tr></thead></table>` +
+                `<br/>The Hiring Team's prescreener has completed their review of the video interview for ${data["FirstName"]} ${data["LastName"]}.` +
+                `<br/>They have submitted their ratings.`
+                `You can go to the General Manager page (inside terminal): <a href='http://hiring.aall.net:444/generalmanager' target="_blank">General Manager Page</a><br/>` +
+                `You can go directly to the ${data["FirstName"]}'s Review page (inside terminal): <a href=${reviewLink} target="_blank">${data["FirstName"]}'s Prescreen Page</a><br/>`,
+                attachments: []
+            }, (err, info) => {
+                if (err) {
+                    console.log('smtp err', err);
+                }
+                else {
+                    console.log('smtp info', info);
+                }
+        
+            })
         })
         .catch(err => {
             console.log(err);
@@ -117,20 +150,6 @@ router.post('/:id', (req, res) => {
         }
     }
 
-    // if (!data.dateFirstEmail) {
-    //     data.dateFirstEmail = "null";
-    // }
-    // else {
-    //     data.dateFirstEmail = "'" + data.dateFirstEmail + "'"
-    // }
-
-    // if (!data.datePreScreen) {
-    //     data.datePreScreen = "null";
-    // }
-    // else {
-    //     data.datePreScreen = "'" + data.datePreScreen + "'"
-    // }
-
     if (data.timePreScreen == '0:00:00' || !data.timePreScreen) {
         data.timePreScreen = "null";
     }
@@ -138,33 +157,12 @@ router.post('/:id', (req, res) => {
         data.timePreScreen = "convert(time, '" + data.timePreScreen + "')"
     }
 
-    // if (!data.dateGenManager) {
-    //     data.dateGenManager = "null";
-    // }
-    // else {
-    //     data.dateGenManager = "'" + data.dateGenManager + "'"
-    // }
-
     if (data.timeGenManager == '0:00:00' || !data.timeGenManager) {
         data.timeGenManager = "null"
     }
     else {
         data.timeGenManager = "convert(time, '" + data.timeGenManager + "')"
     }
-
-    // if (!data.candRejectionLetter) {
-    //     data.candRejectionLetter = "null";
-    // }
-    // else {
-    //     data.candRejectionLetter = "'" + data.candRejectionLetter + "'"
-    // }
-
-    // if (!data.hiringDate ) {
-    //     data.hiringDate = "null" 
-    // }
-    // else {
-    //     data.hiringDate = "'" + data.hiringDate + "'"
-    // }
 
     if (data.goNoGo1 === true) {
         data.goNoGo1 = 1
