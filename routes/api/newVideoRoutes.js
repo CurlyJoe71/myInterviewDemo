@@ -55,33 +55,51 @@ router.get('/checkID/:uid', (req, res) => {
     // console.log('validation:', validation);
 });
 
-router.post('/update', (req, res) => {
+router.post('/update/:id', (req, res) => {
     const data = req.body;
     console.log('incoming data:', data);
     console.log('testing id value in server', id);
-    const pool = new sql.ConnectionPool(config);
-    const request = new sql.Request(pool);
-    try {
-        pool.connect(()=>{
-            request.query(
-                `update paychex.dbo.hiring ` +
-                `set videoid = '${data.testVideoID}' ` +
-                `where uid = '${data.candUID}'`
-            , (err, res) => {
-                if(err) {
-                    console.log('err');
-                }
-                else {
-                    // console.log('res:', res.recordset[0]);
-                }
-            })
-        })
-    }
-    catch (err) {
-        console.log('err', err);
-    }
 
-    res.json({sentKey1:"sentvalue1"})
+    sql.connect(config).then(conn => {
+        conn.query(
+            `update paychex.dob.hiring ` +
+            `set videoid = '${data.videoID}' ` +
+            `where uid = '${data.id}'`
+        )
+        .then(recordset => {
+            res.send(recordset.recordset);
+        })
+        .then(()=>{
+            sql.close();
+        })
+        .catch(err => {
+            console.log('err:', err);
+            sql.close();
+        })
+    })
+    // const pool = new sql.ConnectionPool(config);
+    // const request = new sql.Request(pool);
+    // try {
+    //     pool.connect(()=>{
+    //         request.query(
+    //             `update paychex.dbo.hiring ` +
+    //             `set videoid = '${data.videoID}' ` +
+    //             `where uid = '${data.id}'`
+    //         , (err, res) => {
+    //             if(err) {
+    //                 console.log('err');
+    //             }
+    //             else {
+    //                 // console.log('res:', res.recordset[0]);
+    //             }
+    //         })
+    //     })
+    // }
+    // catch (err) {
+    //     console.log('err', err);
+    // }
+
+    // res.json({sentKey1:"sentvalue1"})
 });
 
 function checkUID(callBack) {
