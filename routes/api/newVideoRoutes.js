@@ -94,29 +94,6 @@ router.post('/update/:id', (req, res) => {
             sql.close();
         })
     })
-    // const pool = new sql.ConnectionPool(config);
-    // const request = new sql.Request(pool);
-    // try {
-    //     pool.connect(()=>{
-    //         request.query(
-    //             `update paychex.dbo.hiring ` +
-    //             `set videoid = '${data.videoID}' ` +
-    //             `where uid = '${data.id}'`
-    //         , (err, res) => {
-    //             if(err) {
-    //                 console.log('err');
-    //             }
-    //             else {
-    //                 // console.log('res:', res.recordset[0]);
-    //             }
-    //         })
-    //     })
-    // }
-    // catch (err) {
-    //     console.log('err', err);
-    // }
-
-    // res.json({sentKey1:"sentvalue1"})
 });
 
 function checkUID(callBack) {
@@ -146,53 +123,25 @@ function checkUID(callBack) {
     }
 };
 
-// router.get('/:id', (req, res) => {
-//     console.log('PARAMS', req.params.id);
-//     const userID = req.params.id;
+// function testEmail() {
+//     transport.sendMail({
+//         from: 'AALL Hiring Team',
+//         to: ['jaime.gonzalez@aall.net'],
+//         subject: 'Video Update Made',
+//         html: `<html><table><th><img alt="AALL Hiring Logo" src="http://localhost:7581/public/images/aallleaves.jpg" /></th></table>` +
+//         `<br/></html>`,
+//         attachments: []
+//     }, (err, info) => {
+//         if (err) {
+//             console.log('smtp err', err);
+//         }
+//         else {
+//             console.log('smtp info', info);
+//         }
+//     })
 
-//     sql.connect(config)
-//     .then(conn => {
-//         conn.query(
-//             `select valid = case when exists ` +
-//             `(select * from paychex.dbo.hiring where uid = '${userID}') ` +
-//             `then 'TRUE' else 'FALSE' end`
-//         )
-//         .then(recordset => {
-//             res.send(recordset.recordset[0]);
-//         })
-//         .then(() => {
-//             sql.close();
-//         })
-//         .catch(err => {
-//             console.log(err);
-//             sql.close();
-//         })
-//     })
-// })
+// }
 
-// router.post('/update/:id', (req, res) => {
-//     console.log('posting PARMAMS ID: ', req.params.id);
-//     console.log('here is body object:', req.body);
-//     const userID = req.params.id;
-//     const videoID = req.body.videoID;
-
-//     sql.connect(config)
-//     .then(conn => {
-//         conn.query(
-//             `update paychex.dbo.hiring ` +
-//             `set VideoID = '${videoID}' where UID = '${userID}'`
-//         )
-//     })
-//     .then(recordset => {
-//         res.send(recordset.recordset);
-//     })
-//     .then(() => {
-//         sql.close();
-//     })
-//     .catch(err => {
-//         console.log('posting err', err);
-//         sql.close();
-//     })
-// })
+// testEmail();
 
 module.exports = router;
