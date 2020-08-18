@@ -62,11 +62,11 @@ router.post('/update/:id', (req, res) => {
         to: ['jaime.gonzalez@aall.net'],
             // perla.navarro@aall.net, brooklyn.reyes@aall.net]',
         subject: 'Video Update Made',
-        html: `<img src='url("/images/aallleaves.jpg")' /><br/>` +
-        `${data.firstName} ${data.lastName} has completed their video interview.` +
+        html: `<!DOCTYPE html><html><body><table><thead><tr style="text-align:center"><img src="https://aall.net/wp-content/uploads/aallleaves.jpg" width="150px" alt="AALL Hiring Logo" border="0"></tr></thead></table>` +
+        `</br>${data.firstName} ${data.lastName} has completed their video interview.` +
         `You can go to the Prescreen page (inside terminal): <a href='http://hiring.aall.net:444/prescreen' target="_blank">ATS Prescreen Page</a><br/>` +
         `You can go directly to the Review page (inside terminal): <a href=${reviewLink} target="_blank">Review ${data.firstName}'s Video</a><br/>` +
-        `<br/>Note for Dev Team: User id:${data.id}; VideoID = ${data.videoID}.`,
+        `<br/>Note for Dev Team: User id:${data.id}; VideoID = ${data.videoID}.</body></html>`,
         attachments: []
     }, (err, info) => {
         if (err) {
@@ -128,8 +128,8 @@ function checkUID(callBack) {
 //         from: 'AALL Hiring Team',
 //         to: ['jaime.gonzalez@aall.net'],
 //         subject: 'Video Update Made',
-//         html: `<html><table><th><img alt="AALL Hiring Logo" src="http://localhost:7581/public/images/aallleaves.jpg" /></th></table>` +
-//         `<br/></html>`,
+//         html: `<!DOCTYPE html><html><body><table><thead><tr style="text-align:center"><img src="https://aall.net/wp-content/uploads/aallleaves.jpg" width="150px" alt="AALL Hiring Logo" border="0"></tr></thead></table>` +
+//         `<br/></body></html>`,
 //         attachments: []
 //     }, (err, info) => {
 //         if (err) {
