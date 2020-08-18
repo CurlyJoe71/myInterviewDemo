@@ -55,6 +55,7 @@ router.post('/update/:id', (req, res) => {
     const data = req.body;
     console.log('incoming data:', data);
     console.log('testing id value in server', id);
+    const reviewLink = 'http://hiring.aall.net:444/video-interview/review/' + data.id;
 
     transport.sendMail({
         from: 'AALL Hiring Team',
@@ -64,7 +65,7 @@ router.post('/update/:id', (req, res) => {
         html: `<img src='url("/images/aallleaves.jpg")' /><br/>` +
         `${data.firstName} ${data.lastName} has completed their video interview.` +
         `You can go to the Prescreen page (inside terminal): <a href='http://hiring.aall.net:444/prescreen' target="_blank">ATS Prescreen Page</a><br/>` +
-        `You can go directly to the Review page (inside terminal): <a href='http://hiring.aall.net:444/video-interview/review/'+${data.id} target="_blank">Review ${data.firstName}'s Video</a><br/>` +
+        `You can go directly to the Review page (inside terminal): <a href=${reviewLink} target="_blank">Review ${data.firstName}'s Video</a><br/>` +
         `<br/>Note for Dev Team: User id:${data.id}; VideoID = ${data.videoID}.`,
         attachments: []
     }, (err, info) => {
