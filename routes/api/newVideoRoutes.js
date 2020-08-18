@@ -16,8 +16,6 @@ const config = {
     driver: "msnodesqlv8"
 };
 
-let transport = nodemailer.createTransport(options);
-
 const options = {
     host: 'smtp.gmail.com',
     port: 465,
@@ -27,6 +25,8 @@ const options = {
         pass: '*2uAg4Nu'
     }
 }
+
+let transport = nodemailer.createTransport(options);
 
 router.get('/checkID/:uid', (req, res) => {
     id = req.params.uid;
