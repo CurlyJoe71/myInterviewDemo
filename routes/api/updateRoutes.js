@@ -63,9 +63,9 @@ router.post('/prescreen/:id', (req, res) => {
                 subject: 'Prescreen Completed',
                 html: `<!DOCTYPE html><html><body><table><thead><tr style="text-align:center"><img src="https://aall.net/wp-content/uploads/aallleaves.jpg" width="150px" alt="AALL Hiring Logo" border="0"></tr></thead></table>` +
                 `<br/>The Hiring Team's prescreener has completed their review of the video interview for ${data["FirstName"]} ${data["LastName"]}.` +
-                `<br/>They have submitted their ratings.`
-                `You can go to the General Manager page (inside terminal): <a href='http://hiring.aall.net:444/generalmanager' target="_blank">General Manager Page</a><br/>` +
-                `You can go directly to the ${data["FirstName"]}'s Review page (inside terminal): <a href=${reviewLink} target="_blank">${data["FirstName"]}'s Prescreen Page</a><br/>`,
+                `<br/>They have submitted their ratings.` +
+                `<br/>You can go to the General Manager page (inside terminal): <a href='http://hiring.aall.net:444/generalmanager' target="_blank">General Manager Page</a><br/>` +
+                `<br/>You can go directly to the ${data["FirstName"]}'s Review page (inside terminal): <a href=${reviewLink} target="_blank">${data["FirstName"]}'s Prescreen Page</a><br/>`,
                 attachments: []
             }, (err, info) => {
                 if (err) {
