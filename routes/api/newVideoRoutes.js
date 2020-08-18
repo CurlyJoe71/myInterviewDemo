@@ -49,23 +49,6 @@ router.get('/checkID/:uid', (req, res) => {
             sql.close();
         })
     })
-    // checkUID((bool, sqlRes)=>{
-    //     // console.log('callback?', bool, sqlRes)
-    //     let validation = sqlRes.valid;
-    //     if (validation === 'TRUE') {
-    //         // res.render(`home`, {
-    //         //     helpers: {
-    //         //         firstName: () => {return firstName;},
-    //         //         lastName: () => {return lastName;}
-    //         //     }
-    //         // })
-    //         res.send('TRUE');
-    //     }
-    //     else {
-    //         res.send("Not looking good...")
-    //     }
-    // });
-    // console.log('validation:', validation);
 });
 
 router.post('/update/:id', (req, res) => {
@@ -74,10 +57,14 @@ router.post('/update/:id', (req, res) => {
     console.log('testing id value in server', id);
 
     transport.sendMail({
-        from: 'hiringapps@aall.net',
-        to: 'jaime.gonzalez@aall.net',
+        from: 'AALL Hiring Team',
+        to: '[jaime.gonzalez@aall.net, perla.navarro@aall.net, brooklyn.reyes@aall.net]',
         subject: 'Video Update Made',
-        html: `Update made for ${data.id}. VideoID = ${data.videoID}. `,
+        html: `<img src='url("/images/aallleaves.jpg")' /><br/>` +
+        `${data.firstName} ${data.lastName} has completed their video interview.` +
+        `You can go to the Prescreen page (inside terminal): <a href='http://hiring.aall.net:444/prescreen' target="_blank">ATS Prescreen Page</a><br/>` +
+        `You can go directly to the Review page (inside terminal): <a href='http://hiring.aall.net:444/video-interview/review/'+${data.id} target="_blank">Review ${data.firstName}'s Video</a><br/>` +
+        `<br/>Note for Dev Team: User id:${data.id}; VideoID = ${data.videoID}.`,
         attachments: []
     }, (err, info) => {
         if (err) {
