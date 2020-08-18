@@ -58,7 +58,8 @@ router.post('/update/:id', (req, res) => {
 
     transport.sendMail({
         from: 'AALL Hiring Team',
-        to: '[jaime.gonzalez@aall.net, perla.navarro@aall.net, brooklyn.reyes@aall.net]',
+        to: '[jaime.gonzalez@aall.net]',
+            // perla.navarro@aall.net, brooklyn.reyes@aall.net]',
         subject: 'Video Update Made',
         html: `<img src='url("/images/aallleaves.jpg")' /><br/>` +
         `${data.firstName} ${data.lastName} has completed their video interview.` +
