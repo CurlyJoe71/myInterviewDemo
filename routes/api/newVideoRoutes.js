@@ -15,7 +15,7 @@ const config = {
     driver: "msnodesqlv8"
 };
 
-router.get('/:uid', (req, res) => {
+router.get('/checkID/:uid', (req, res) => {
     id = req.params.uid;
     
     console.log('app.get id:', id);
