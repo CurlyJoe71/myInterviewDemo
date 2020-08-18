@@ -64,7 +64,7 @@ router.post('/update/:id', (req, res) => {
     sql.connect(config).then(conn => {
         conn.query(
             `update paychex.dbo.hiring ` +
-            `set videoid = '${data.videoID}', VideoAdded = '${today}' ` +
+            `set videoid = '${data.videoID}', VideoAdded = ${today} ` +
             `where uid = '${data.id}'`
         )
         .then(recordset => {
