@@ -56,6 +56,7 @@ router.get('/checkID/:uid', (req, res) => {
 });
 
 router.post('/update/:id', (req, res) => {
+    const today = new Date();
     const data = req.body;
     console.log('incoming data:', data);
     console.log('testing id value in server', id);
@@ -63,7 +64,7 @@ router.post('/update/:id', (req, res) => {
     sql.connect(config).then(conn => {
         conn.query(
             `update paychex.dbo.hiring ` +
-            `set videoid = '${data.videoID}' ` +
+            `set videoid = '${data.videoID}', VideoAdded = '${today}' ` +
             `where uid = '${data.id}'`
         )
         .then(recordset => {
