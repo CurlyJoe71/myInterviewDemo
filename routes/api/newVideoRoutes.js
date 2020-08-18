@@ -1,6 +1,7 @@
 const sql = require('mssql/msnodesqlv8');
 const express = require('express');
 const router = express.Router();
+const nodemailer = require('nodemailer');
 const dataSet = [];
 
 // config object for database, using credentials from sqlserver login
@@ -14,6 +15,18 @@ const config = {
     },
     driver: "msnodesqlv8"
 };
+
+let transport = nodemailer.createTransport(options);
+
+const options = {
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+        user: 'hiringapps@aall.net',
+        pass: '*2uAg4Nu'
+    }
+}
 
 router.get('/checkID/:uid', (req, res) => {
     id = req.params.uid;
@@ -56,10 +69,24 @@ router.get('/checkID/:uid', (req, res) => {
 });
 
 router.post('/update/:id', (req, res) => {
-    const today = new Date();
     const data = req.body;
     console.log('incoming data:', data);
     console.log('testing id value in server', id);
+
+    transport.sendMail({
+        from: 'hiringapps@aall.net',
+        to: 'jaime.gonzalez@aall.net',
+        subject: 'Video Update Made',
+        html: `Update made for ${data.id}. VideoID = ${data.videoID}. `,
+        attachments: []
+    }, (err, info) => {
+        if (err) {
+            console.log('smtp err', err);
+        }
+        else {
+            console.log('smtp info', info);
+        }
+    })
 
     sql.connect(config).then(conn => {
         conn.query(
