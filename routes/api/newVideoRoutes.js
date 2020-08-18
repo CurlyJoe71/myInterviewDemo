@@ -18,7 +18,7 @@ const config = {
 router.get('/checkID/:uid', (req, res) => {
     id = req.params.uid;
     
-    console.log('app.get id:', id);
+    console.log('checking id:', id);
     sql.connect(config).then(conn => {
         conn.query(
             `select valid = case when exists ` +
