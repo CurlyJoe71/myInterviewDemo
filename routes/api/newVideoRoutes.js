@@ -15,22 +15,21 @@ const config = {
     driver: "msnodesqlv8"
 };
 
-router.get('/:uid.:firstName.:lastName', (req, res) => {
+router.get('/:uid', (req, res) => {
     id = req.params.uid;
-    firstName = req.params.firstName;
-    lastName = req.params.lastName;
     
     console.log('app.get id:', id);
     checkUID((bool, sqlRes)=>{
         // console.log('callback?', bool, sqlRes)
         let validation = sqlRes.valid;
         if (validation === 'TRUE') {
-            res.render(`home`, {
-                helpers: {
-                    firstName: () => {return firstName;},
-                    lastName: () => {return lastName;}
-                }
-            })
+            // res.render(`home`, {
+            //     helpers: {
+            //         firstName: () => {return firstName;},
+            //         lastName: () => {return lastName;}
+            //     }
+            // })
+            res.send('TRUE');
         }
         else {
             res.send("Not looking good...")

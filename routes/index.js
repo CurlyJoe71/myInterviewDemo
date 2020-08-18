@@ -14,6 +14,6 @@ router.use('/addNewCandidate', addRoutes);
 router.use('/getID', getIDRoutes);
 router.use('/reports', getReportData);
 router.use('/webhook', webhookRoutes);
-router.use('/video', newVideoRoutes);
+router.use('/video-interview', newVideoRoutes);
 
 module.exports = router;
