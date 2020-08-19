@@ -59,7 +59,7 @@ router.post('/update/:id', (req, res) => {
 
     transport.sendMail({
         from: 'AALL Hiring Team',
-        to: ['jaime.gonzalez@aall.net'],
+        to: ['jaime.gonzalez@aall.net','perla.navarro@aall.net','brooklyn.reyes@aall.net'],
             // perla.navarro@aall.net, brooklyn.reyes@aall.net]',
         subject: 'Video Update Made',
         html: `<!DOCTYPE html><html><body><table><thead><tr style="text-align:center"><img src="https://aall.net/wp-content/uploads/aallleaves.jpg" width="150px" alt="AALL Hiring Logo" border="0"></tr></thead></table>` +
@@ -80,7 +80,7 @@ router.post('/update/:id', (req, res) => {
     sql.connect(config).then(conn => {
         conn.query(
             `update paychex.dbo.hiring ` +
-            `set videoid = '${data.videoID}', VideoAdded = getdate() ` +
+            `set videoid = '${data.videoID}', VideoAdded = getdate(), Status = 'Pending Prescreen Review' ` +
             `where uid = '${data.id}'`
         )
         .then(recordset => {

@@ -46,6 +46,7 @@ router.post('/prescreen/:id', (req, res) => {
             `Spanish = ${data["Spanish"]}, ` +
             `English = ${data["English"]}, ` +
             `PrescreenNotes = '${data["PrescreenNotes"]}' ` +
+            `Status = '${data["Status"]}' ` +
             `where uid = '${data["UID"]}'`
         )
         .then(recordset => {
@@ -58,8 +59,7 @@ router.post('/prescreen/:id', (req, res) => {
         .then(() => {
             transport.sendMail({
                 from: 'AALL Hiring Team',
-                to: ['jaime.gonzalez@aall.net'],
-                    // perla.navarro@aall.net, brooklyn.reyes@aall.net]',
+                to: ['jaime.gonzalez@aall.net','carmen.lopez@aall.net','brooklyn.reyes@aall.net','garrett@aall.net'],
                 subject: 'Prescreen Completed',
                 html: `<!DOCTYPE html><html><body><table><thead><tr style="text-align:center"><img src="https://aall.net/wp-content/uploads/aallleaves.jpg" width="150px" alt="AALL Hiring Logo" border="0"></tr></thead></table>` +
                 `<br/>The Hiring Team's prescreener has completed their review of the video interview for ${data["FirstName"]} ${data["LastName"]}.` +
