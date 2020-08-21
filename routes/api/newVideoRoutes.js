@@ -55,16 +55,16 @@ router.post('/update/:id', (req, res) => {
     const data = req.body;
     console.log('incoming data:', data);
     console.log('testing id value in server', id);
-    const reviewLink = 'http://hiring.aall.net:444/video-interview/review/' + data.id;
+    const reviewLink = 'http://hiringadmin.aall.net:7161/video-interview/review/' + data.id;
 
     transport.sendMail({
         from: 'AALL Hiring Team',
-        to: ['jaime.gonzalez@aall.net'],
-            // perla.navarro@aall.net, brooklyn.reyes@aall.net]',
+        to: ['jaime.gonzalez@aall.net','perla.navarro@aall.net, brooklyn.reyes@aall.net'],
+            // ',
         subject: 'Video Update Made',
         html: `<!DOCTYPE html><html><body><table><thead><tr style="text-align:center"><img src="https://aall.net/wp-content/uploads/aallleaves.jpg" width="150px" alt="AALL Hiring Logo" border="0"></tr></thead></table>` +
         `</br>${data.firstName} ${data.lastName} has completed their video interview.` +
-        `You can go to the Prescreen page (inside terminal): <a href='http://hiring.aall.net:444/prescreen' target="_blank">ATS Prescreen Page</a><br/>` +
+        `You can go to the Prescreen page (inside terminal): <a href='http://hiringadmin.aall.net:7161/prescreen' target="_blank">ATS Prescreen Page</a><br/>` +
         `You can go directly to the Review page (inside terminal): <a href=${reviewLink} target="_blank">Review ${data.firstName}'s Video</a><br/>` +
         `<br/>Note for Dev Team: User id:${data.id}; VideoID = ${data.videoID}.</body></html>`,
         attachments: []
