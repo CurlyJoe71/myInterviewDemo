@@ -59,7 +59,7 @@ router.post('/update/:id', (req, res) => {
 
     transport.sendMail({
         from: 'AALL Hiring Team',
-        to: ['jaime.gonzalez@aall.net','perla.navarro@aall.net','brooklyn.reyes@aall.net'],
+        to: ['jaime.gonzalez@aall.net'],
             // perla.navarro@aall.net, brooklyn.reyes@aall.net]',
         subject: 'Video Update Made',
         html: `<!DOCTYPE html><html><body><table><thead><tr style="text-align:center"><img src="https://aall.net/wp-content/uploads/aallleaves.jpg" width="150px" alt="AALL Hiring Logo" border="0"></tr></thead></table>` +
