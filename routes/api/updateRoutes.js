@@ -35,7 +35,7 @@ router.post('/prescreen/:id', (req, res) => {
     data["PrescreenNotes"] = data["PrescreenNotes"].replace(/'/g, "''");
     console.log('after replace,', data["PrescreenNotes"]);
     const id = req.params.id;
-    const reviewLink = 'http://hiring.aall.net:444/video-interview/review/' + data["UID"];
+    const reviewLink = 'https://hiringadmin.aall.net:7161/video-interview/review/' + data["UID"];
 
     sql.connect(config).then(conn=>{
         conn.query(
@@ -64,7 +64,7 @@ router.post('/prescreen/:id', (req, res) => {
                 html: `<!DOCTYPE html><html><body><table><thead><tr style="text-align:center"><img src="https://aall.net/wp-content/uploads/aallleaves.jpg" width="150px" alt="AALL Hiring Logo" border="0"></tr></thead></table>` +
                 `<br/>The Hiring Team's prescreener has completed their review of the video interview for ${data["FirstName"]} ${data["LastName"]}.` +
                 `<br/>They have submitted their ratings.` +
-                `<br/>You can go to the General Manager page (inside terminal): <a href='http://hiring.aall.net:444/generalmanager' target="_blank">General Manager Page</a><br/>` +
+                `<br/>You can go to the General Manager page (inside terminal): <a href='https://hiringadmin.aall.net:7161/generalmanager' target="_blank">General Manager Page</a><br/>` +
                 `<br/>You can go directly to the ${data["FirstName"]}'s Review page (inside terminal): <a href=${reviewLink} target="_blank">${data["FirstName"]}'s Prescreen Page</a><br/>`,
                 attachments: []
             }, (err, info) => {
