@@ -119,7 +119,7 @@ router.post('/GMNotes/:id', (req, res) => {
             `where uid = '${req.body.uid}'`
         )
         .then(recordset => {
-            res.send(recordset.recorset);
+            res.send(recordset.recordset);
         })
         .then(() => {
             sql.close();
@@ -127,6 +127,50 @@ router.post('/GMNotes/:id', (req, res) => {
         .catch(err => {
             console.log('err:', err);
             sql.close()
+        })
+    })
+});
+
+router.post('/status/:id', (req, res) => {
+    console.log('updating status');
+    sql.connect(config)
+    .then(conn => {
+        conn.query(
+            `update paychex.dbo.hiring ` +
+            `set Status = '${req.body.status}' ` +
+            `where uid = '${req.body.uid}'`
+        )
+        .then(recordset => {
+            res.send(recordset.recordset)
+        })
+        .then(() => {
+            sql.close();
+        })
+        .catch(err => {
+            console.log('err', err);
+            sql.close();
+        })
+    })
+});
+
+router.post('/nogo/:id', (req, res) => {
+    console.log('changing to no go');
+    sql.connect(config)
+    .then(conn => {
+        conn.query(
+            `update paychex.dbo.hiring ` +
+            `set status = '${req.body.status}', Active = 0 ` +
+            `where uid = '${req.body.uid}' `
+        )
+        .then(recordset => {
+            res.send(recordset.recordset)
+        })
+        .then(() => {
+            sql.close();
+        })
+        .catch(err => {
+            console.log('err', err);
+            sql.close();
         })
     })
 })

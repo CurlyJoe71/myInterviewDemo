@@ -29,10 +29,6 @@ const options = {
 let transport = nodemailer.createTransport(options);
 
 router.post('/onceHub', (req, res) => {
-    console.log('req data', req.body.message.props.children);
-    let test = req.body.message.props.children.filter(t => typeof t === 'string')
-    //.join(' ');
-    console.log('test array:', test);
     const data = req.body;
     
     sql.connect(config).then(conn=>{

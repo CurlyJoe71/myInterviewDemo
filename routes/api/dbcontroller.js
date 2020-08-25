@@ -8,11 +8,43 @@ const config = {
     server: "sqlserver",
     database: "Paychex",
     options: {
-      trustedConnection: true,
-      useUTC: true
+        trustedConnection: true,
+        useUTC: true
     },
     driver: "msnodesqlv8"
 };
+
+exports.getManagers = (req, res) => {
+    sql.connect(config)
+    .then(conn => {
+        conn
+        .query(
+            "select emp2.firstname, emp2.lastname,o.manager, o.email, oh.oncehublink " +
+            "from lobby_queue.dbo.office_managers o " +
+            "left join paychex.dbo.oncehub_links oh on oh.manager = o.manager " +
+            "cross apply ( " +
+            "select top 1 * from daily_reports.dbo.employees emp " +
+            "where emp.[instar initials] = o.manager " +
+            "order by emp.effdate desc " +
+            ") emp2 " +
+            "where o.enddate is null " +
+            "and oh.oncehublink is not null " +
+            "and emp2.firstname is not null " +
+            "group by o.manager, o.email, oh.oncehublink, emp2.firstname, emp2.lastname"
+        )
+        .then(recordset => {
+            console.log('get man recordset:', recordset.recordset);
+            res.send(recordset.recordset);
+        })
+        .then(() => {
+            sql.close();
+        })
+        .catch(err => {
+            console.log('err:', err);
+            sql.close();
+        })
+    })
+}
 
 exports.get = (req, res) => {
     console.log('controller id req made');
@@ -98,28 +130,6 @@ exports.getPage = (req, res) => {
     })
 }
 
-exports.geManagers = (req, res) => {
-    sql.connect(config)
-    .then(conn => {
-        conn
-        .query(
-            "select [Manger], [EMAIL] from [Lobby_queue].[dbo].[office_managers] " +
-            "where EndDate is null " +
-            "group by Manager, EMAIL"
-        )
-        .then(recordset => {
-            dataSet[0] = recordset.recordset;
-            res.send(dataset);
-        })
-        .then(() => {
-            sql.close();
-        })
-        .catch(err => {
-            console.log('err:', err);
-            sql.close();
-        })
-    })
-}
 
 exports.addNew = () => {
     console.log("add new path");

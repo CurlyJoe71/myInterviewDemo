@@ -1,7 +1,10 @@
 const router = require('express').Router();
 const controller = require('./dbcontroller');
-  
+
 // connect to the database
+router.route('/getManagers')
+  .get(controller.getManagers);
+
 router.route('/page/:perPage/:offset')
   .get(controller.getPage);
 
