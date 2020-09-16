@@ -4,12 +4,16 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const bodyParser = require('body-parser');
 const routes = require("./routes");
+const morgan = require('morgan');
+const winston = require('./winston/config');
 
 const port = 7581;
 
 const jsonParser = bodyParser.json();
 const urlencodeParser = bodyParser.urlencoded({extended:true});
+app.use(morgan('combined', { stream: winston.stream }));
 
+winston.info('You have successfully started working with winston and morgan');
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
